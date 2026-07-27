@@ -33,21 +33,7 @@ sendMessageBtn.addEventListener("click", sendChatMessage);
 checkUsageBtn.addEventListener("click", checkTokenUsage);
 
 /* STEP 7: Create the checkTokenUsage function */
-function checkTokenUsage() {
-    let url = "https://georgian.polaristechservices.com/api/claude/status";
-    fetch(url, {
-        headers: {
-            "Content-Type": "application/json",
-            "X-Student-API-Key": "200393548",
-        },
-    })
-        .then((res) => {
-            return res.json();
-        })
-        .then((json) => {
-            console.log(json);
-        });
-}
+
 // STEP 7a: Create complete url
 
 // STEP 7b: Request status from the API
