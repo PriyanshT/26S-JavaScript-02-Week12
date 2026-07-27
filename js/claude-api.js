@@ -52,7 +52,18 @@ function checkTokenUsage(){
 
 function displayStatus(json){
     console.log(json);
+
     let pre = document.createElement("pre"); // <pre></pre>
+
+    pre.textContent = `Is Enabled: ${json.is_enabled}
+    Last Used At: ${json.last_used_at}
+    Student ID: ${json.student_id}
+    Student Name: ${json.student_name}
+    Tokens Allocated: ${json.tokens_allocated}
+    Tokens Remaining: ${json.tokens_remaining}
+    Tokens Used: ${json.tokens_used}`;
+
+    results.appendChild(pre);
 }
 
 function sendChatMessage(){
