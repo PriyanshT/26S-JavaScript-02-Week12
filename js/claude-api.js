@@ -66,21 +66,44 @@ function displayStatus(json){
     results.appendChild(pre);
 }
 
+/* STEP 8: Create the sendChatMessage function for Claude API interaction */
 function sendChatMessage(){
-    /* STEP 8: Create the sendChatMessage function for Claude API interaction */
-    
     // STEP 8a: Get form values
-    
+    let userInput = userMessage.value;
+
     // STEP 8b: Create complete url
-    
+    let url = `${baseURL}/api/claude/messages`;
+
     // STEP 8c: Prepare the request body according to Claude API format
+    let requestBody = {
+        max_tokens: maxTokens,
+        messages: [{ content: userInput, role: 'user' }],
+        model: 'claude-sonnet-5',
+    }
     
     // STEP 8d: Make the API request using fetch()
-    
-    // STEP 8e: Handle the response
-    
-    // STEP 8f: Extract the message content from Claude's response
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "X-Student-API-Key": studentApiKey,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestBody)
+    }).then(response => {
+        // STEP 8e: Handle the response
+        return response.json();
+    }).then(json => {
+        // STEP 8f: Extract the message content from Claude's response
+        displayMessage(json);
+    })
+}
 
+function displayMessage(json){
+    console.log(json);
+
+    let para = document.createElement("p"); // <p></p>
+    para.textContent = `Assistant: ${json.content[0].text}`;
+    results.appendChild(para);
 }
 
 // LAB EXTENSION: Multi-Message Chat Feature
